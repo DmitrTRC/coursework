@@ -3,3 +3,11 @@
 //
 
 #include "Cactus_1.hpp"
+#include "Drawable_Rect.hpp"
+
+Cactus1::Cactus1(int y, int x) : DrawableRect(y, x, "../textures/cactus_big.trx") {}
+
+void Cactus1::move() {
+
+    _x -= 1;
+}
