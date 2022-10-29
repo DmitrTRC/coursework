@@ -31,7 +31,7 @@ public:
 
     void ProcessMenu();
 
-      [[nodiscard]] bool isRunning() const;
+    [[nodiscard]] bool isRunning() const;
 
 private:
     GameBoard *_board;
@@ -39,6 +39,7 @@ private:
     Bonus *_bonus{};
     T_rex *_t_rex_move1;
     T_Rex_step *_t_rex_move2;
+    DrawableRect *_cur_t_rex;
 
 
     bool _is_step = false; // true - step, false - run

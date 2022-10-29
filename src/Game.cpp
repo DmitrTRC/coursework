@@ -52,6 +52,7 @@ void Game::processInput() {
         case ' ':
             if (!_t_rex_move1->isJump()) {
                 beep();
+                _board->ClearObject(_cur_t_rex);
                 _board->setTimeOut(50);
                 _t_rex_move1->jump();
             }
@@ -89,11 +90,18 @@ void Game::redraw() {
 
 void Game::updateState() {
 
-    if (_bonus == nullptr) {
-        _bonus = new Bonus(10, 50);
-        _board->add(_bonus);
+//    if (_bonus == nullptr) {
+//        _bonus = new Bonus(10, 50);
+//        _board->add(_bonus);
+//
+//    }
 
+    if (_is_step) {
+        _cur_t_rex = _t_rex_move2;
+    } else {
+        _cur_t_rex = _t_rex_move1;
     }
+    _is_step = !_is_step;
 
     if (_t_rex_move1->isJump()) {
 
@@ -105,17 +113,8 @@ void Game::updateState() {
         }
 
     } else {
-        if (_is_step) {
-            _board->ClearObject(_t_rex_move1);
-            _board->add(_t_rex_move2);
-
-
-        } else {
-            _board->ClearObject(_t_rex_move2);
-            _board->add(_t_rex_move1);
-
-        }
-        _is_step = !_is_step;
+        _board->ClearObject(_cur_t_rex);
+        _board->add(_cur_t_rex);
     }
 }
 
