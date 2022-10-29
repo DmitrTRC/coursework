@@ -41,6 +41,7 @@ add_library(t_rex_lib STATIC
             src/T_Rex_Step.cpp
             src/Cactus_1.cpp
             src/Movable_Rect.cpp
+            src/Play_Again.cpp
 
             )
 

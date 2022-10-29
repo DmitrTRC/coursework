@@ -5,6 +5,7 @@
 #include "palette.hpp"
 #include "T_Rex.hpp"
 #include "T_Rex_Step.hpp"
+#include "Play_Again.hpp"
 #include <vector>
 
 #include <curses.h>
@@ -87,7 +88,6 @@ void Game::redraw() {
 
     _board->refreshBoard();
 
-
 }
 
 void Game::updateState() {
@@ -120,21 +120,41 @@ void Game::updateState() {
         _board->add(_cur_t_rex);
         _is_step = !_is_step;
     }
+    for (auto &cactus: cacti) {
+        if (isColliding(_cur_t_rex, cactus)) {
+            flash();
+            flash();
+            _isRunning = false;
+        }
+    }
 }
 
 
 void Game::run() { // Main LOOP
+    bool _isPlaying = true;
+    auto *play_again = new PlayAgain(_board->getBoard());
 
-    while (isRunning()) {
+    while (_isPlaying) {
+        while (isRunning()) {
 
-        processInput();
+            processInput();
 
-        updateState();
+            updateState();
 
-        redraw();
+            redraw();
 
+        }
+        _board->setTimeOut(-1);
+        _board->clearBoard();
+        if (play_again->runGetChoice()) {
+            _isRunning = true;
+            _board->initBoard();
+            _board->setTimeOut(200);
+        } else {
+            _isPlaying = false;
+        }
     }
-
+    delete play_again;
 }
 
 void Game::ProcessMenu() {
@@ -159,13 +179,32 @@ void Game::_updateCacti() {
         _board->ClearObject(cactus);
         cactus->move();
         _board->add(cactus);
-        if (cactus->getX() < 0) {
+
+        if (cactus->getX() < 2) {
             _board->ClearObject(cactus);
             cacti.erase(cacti.begin());
             delete cactus;
         }
     }
 
+
+}
+
+bool Game::isColliding(MovableRect *rect1, MovableRect *rect2) {
+
+    if (rect1->getX() + rect1->getWidth() < rect2->getX()) {
+        return false;
+    }
+    if (rect1->getX() > rect2->getX() + rect2->getWidth()) {
+        return false;
+    }
+    if (rect1->getY() + rect1->getHeight() < rect2->getY()) {
+        return false;
+    }
+    if (rect1->getY() > rect2->getY() + rect2->getHeight()) {
+        return false;
+    }
+    return true;
 
 }
 

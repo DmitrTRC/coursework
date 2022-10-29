@@ -34,6 +34,8 @@ public:
 
     [[nodiscard]] bool isRunning() const;
 
+    static bool isColliding(MovableRect *rect1, MovableRect *rect2);
+
 private:
     GameBoard *_board;
     Menu *_menu;

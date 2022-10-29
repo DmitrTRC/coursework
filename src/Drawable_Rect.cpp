@@ -54,8 +54,9 @@ void DrawableRect::clear(WINDOW *window) {
     auto y = _y;
     auto x = _x;
 
+
     for (const auto &line: _rect_icon) {
-        mvwaddstr(window, y, x, std::string(line.size(), ' ').c_str());
+        mvwaddstr(window, y, x, std::string(_width + 1, ' ').c_str());
         y++;
     }
 
