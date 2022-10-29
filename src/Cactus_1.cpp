@@ -3,9 +3,9 @@
 //
 
 #include "Cactus_1.hpp"
-#include "Drawable_Rect.hpp"
+#include "Movable_Rect.hpp"
 
-Cactus1::Cactus1(int y, int x) : DrawableRect(y, x, "../textures/cactus_big.trx") {}
+Cactus1::Cactus1(int y, int x) : MovableRect(y, x, "../textures/cactus_big.trx") {}
 
 void Cactus1::move() {
 

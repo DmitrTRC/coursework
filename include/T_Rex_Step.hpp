@@ -5,9 +5,9 @@
 #ifndef COURSEWORK_DEV_T_REX_STEP_HPP
 #define COURSEWORK_DEV_T_REX_STEP_HPP
 
-#include "Drawable_Rect.hpp"
+#include "Trx.hpp"
 
-class T_Rex_step : public DrawableRect {
+class T_Rex_step : public TRX {
 public:
     T_Rex_step(int, int);
 };

@@ -4,4 +4,4 @@
 
 #include "T_Rex_Step.hpp"
 
-T_Rex_step::T_Rex_step(int y , int x) : DrawableRect ( y , x , "../textures/trx_move2.trx" ) {}
+T_Rex_step::T_Rex_step(int y , int x) : TRX( y , x , "../textures/trx_move2.trx" ) {}

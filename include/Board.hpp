@@ -26,7 +26,7 @@ public:
 
     void add(Drawable *drawable);
 
-    void printBoard() const;
+    int getWidth() const;
 
     void refreshBoard();
 

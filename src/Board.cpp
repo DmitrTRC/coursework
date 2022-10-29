@@ -4,10 +4,6 @@
 #include <curses.h>
 
 
-void GameBoard::printBoard() const        //функция вывода поля принимает указатель board типа GameBoard
-{
-}
-
 GameBoard::GameBoard(int height, int width) : _height(height), _width(width) {
 
     int yMax, xMax;
@@ -83,6 +79,12 @@ void GameBoard::setTimeOut(int time_out) {
 WINDOW *GameBoard::getBoard() const {
 
     return boardWin;
+
+}
+
+int GameBoard::getWidth() const {
+
+    return _width;
 
 }
 

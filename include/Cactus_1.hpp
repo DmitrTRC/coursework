@@ -5,15 +5,15 @@
 #ifndef COURSEWORK_DEV_CACTUS_1_HPP
 #define COURSEWORK_DEV_CACTUS_1_HPP
 
-#include "Drawable_Rect.hpp"
+#include "Movable_Rect.hpp"
 
-class Cactus1 : public DrawableRect {
+class Cactus1 : public MovableRect {
 public:
     Cactus1(int, int);
 
-    void move();
+    ~Cactus1() override = default;
 
-
+    void move() override;
 };
 
 
